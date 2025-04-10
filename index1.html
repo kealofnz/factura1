@@ -2,36 +2,65 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Factura</title>
+  <title>Ticket de Venta</title>
   <style>
-    body { font-family: Arial; padding: 20px; }
-    .factura { border: 1px solid #ccc; padding: 20px; }
+    body {
+      font-family: monospace;
+      font-size: 12px;
+      width: 280px;
+      margin: auto;
+      padding: 10px;
+    }
+    .center { text-align: center; }
+    .bold { font-weight: bold; }
+    .line { border-top: 1px dashed #000; margin: 8px 0; }
+    table { width: 100%; border-collapse: collapse; }
+    td { padding: 4px 0; }
+    .right { text-align: right; }
+    .header td { font-weight: bold; border-bottom: 1px solid #000; }
   </style>
 </head>
-<body>
-  <div class="factura">
-    <h1>Factura</h1>
-    <p><strong>Fecha:</strong> <span id="fecha"></span></p>
-    <p><strong>Mesa:</strong> <span id="mesa"></span></p>
-    <p><strong>Boleta:</strong> <span id="boleta"></span></p>
-    <hr>
-    <p><strong>Servicios:</strong> <span id="servicios"></span></p>
-    <p><strong>Cantidades:</strong> <span id="cantidades"></span></p>
-    <p><strong>Precio unitario:</strong> <span id="p_unit"></span></p>
-    <p><strong>Total:</strong> <span id="total"></span></p>
-  </div>
+<body onload="cargarTicket()">
+  <div class="center bold">RESTAURANTE XYZ</div>
+  <div class="center">Gracias por su compra</div>
+  <div class="line"></div>
+
+  <div><b>Cliente:</b> <span id="nomcliente"></span></div>
+  <div><b>Venta #:</b> <span id="codigo"></span></div>
+  <div class="line"></div>
+
+  <table>
+    <tr class="header">
+      <td>Producto</td>
+      <td>Cant</td>
+      <td>P.Unit</td>
+      <td>Total</td>
+    </tr>
+    <tbody id="filas">
+      <!-- Aquí se insertarán las filas -->
+    </tbody>
+  </table>
+
+  <div class="line"></div>
+  <div><b>Subtotal:</b> ₡<span id="subtotal"></span></div>
+  <div><b>Impuesto / Descuento:</b> ₡<span id="impto"></span></div>
+  <div class="bold">TOTAL: ₡<span id="totalventa"></span></div>
+  <div class="line"></div>
+  <div class="center">¡Vuelva pronto!</div>
 
   <script>
-    // Obtener parámetros de la URL
-    const params = new URLSearchParams(window.location.search);
+    function cargarTicket() {
+      const params = new URLSearchParams(window.location.search);
 
-    document.getElementById("fecha").textContent = params.get("fecha");
-    document.getElementById("mesa").textContent = params.get("mesa");
-    document.getElementById("boleta").textContent = params.get("boleta");
-    document.getElementById("servicios").textContent = params.get("servicios");
-    document.getElementById("cantidades").textContent = params.get("cantidades");
-    document.getElementById("p_unit").textContent = params.get("p_unit");
-    document.getElementById("total").textContent = params.get("total");
+      document.getElementById("nomcliente").textContent = params.get("nomcliente") || "";
+      document.getElementById("subtotal").textContent = params.get("subtotal") || "";
+      document.getElementById("impto").textContent = params.get("impto") || "";
+      document.getElementById("totalventa").textContent = params.get("totalventa") || "";
+      document.getElementById("codigo").textContent = params.get("codigo") || "";
+
+      const filasHTML = decodeURIComponent(params.get("filas") || "");
+      document.getElementById("filas").innerHTML = filasHTML;
+    }
   </script>
 </body>
 </html>
