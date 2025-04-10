@@ -27,6 +27,8 @@
 
   <div><b>Cliente:</b> <span id="nomcliente"></span></div>
   <div><b>Venta #:</b> <span id="codigo"></span></div>
+  <div><b>Vendedor:</b> <span id="vendedor"></span></div>
+  <div><b>Forma de pago:</b> <span id="fpago"></span></div>
   <div class="line"></div>
 
   <table>
@@ -57,6 +59,8 @@
       document.getElementById("impto").textContent = params.get("impto") || "";
       document.getElementById("totalventa").textContent = params.get("totalventa") || "";
       document.getElementById("codigo").textContent = params.get("codigo") || "";
+      document.getElementById("vendedor").textContent = params.get("vendedor") || "";
+      document.getElementById("fpago").textContent = params.get("fpago") || "";
 
       const filasHTML = decodeURIComponent(params.get("filas") || "");
       document.getElementById("filas").innerHTML = filasHTML;
