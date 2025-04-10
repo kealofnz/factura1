@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Factura</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .factura { border: 1px solid #ccc; padding: 20px; }
+  </style>
+</head>
+<body>
+  <div class="factura">
+    <h1>Factura</h1>
+    <p><strong>Fecha:</strong> <span id="fecha"></span></p>
+    <p><strong>Mesa:</strong> <span id="mesa"></span></p>
+    <p><strong>Boleta:</strong> <span id="boleta"></span></p>
+    <hr>
+    <p><strong>Servicios:</strong> <span id="servicios"></span></p>
+    <p><strong>Cantidades:</strong> <span id="cantidades"></span></p>
+    <p><strong>Precio unitario:</strong> <span id="p_unit"></span></p>
+    <p><strong>Total:</strong> <span id="total"></span></p>
+  </div>
+
+  <script>
+    // Obtener parámetros de la URL
+    const params = new URLSearchParams(window.location.search);
+
+    document.getElementById("fecha").textContent = params.get("fecha");
+    document.getElementById("mesa").textContent = params.get("mesa");
+    document.getElementById("boleta").textContent = params.get("boleta");
+    document.getElementById("servicios").textContent = params.get("servicios");
+    document.getElementById("cantidades").textContent = params.get("cantidades");
+    document.getElementById("p_unit").textContent = params.get("p_unit");
+    document.getElementById("total").textContent = params.get("total");
+  </script>
+</body>
+</html>
